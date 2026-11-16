@@ -29,7 +29,7 @@ export default function OpengraphImage() {
           <div style={{ fontSize: 44, color: "#c6ff3d", marginTop: 20 }}>Full Stack Developer</div>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 26, color: "#a3a09a" }}>
-          <span>React · Next.js · TypeScript · WordPress · Laravel</span>
+          <span>React · Next.js · TypeScript · WordPress</span>
           <span>Islamabad, Pakistan</span>
         </div>
       </div>

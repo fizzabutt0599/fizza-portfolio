@@ -45,7 +45,6 @@ export const metadata: Metadata = {
     "Next.js",
     "TypeScript",
     "WordPress",
-    "Laravel",
     "WooCommerce",
     "Portfolio",
   ],

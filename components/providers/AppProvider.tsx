@@ -29,7 +29,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     if (prefersReducedMotion()) return;
 
     const lenis = new Lenis({
-      lerp: 0.085,
+      lerp: 0.1,
       smoothWheel: true,
       wheelMultiplier: 1,
       touchMultiplier: 1.4,

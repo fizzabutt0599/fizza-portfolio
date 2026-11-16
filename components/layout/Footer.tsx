@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowUp } from "lucide-react";
-import { siteConfig, socialLinks } from "@/data/portfolio";
+import { ArrowUp, ArrowUpRight } from "lucide-react";
+import { navItems, siteConfig, socialLinks } from "@/data/portfolio";
 import { useApp } from "@/components/providers/AppProvider";
 import { gsap, ScrollTrigger, prefersReducedMotion } from "@/lib/gsap";
 import { useIsomorphicLayoutEffect } from "@/hooks/useIsomorphicLayoutEffect";
@@ -27,6 +27,14 @@ export function Footer() {
         stagger: 0.04,
         ease: "expo.out",
         scrollTrigger: { trigger: ".ft-name", start: "top 95%", once: true },
+      });
+      gsap.from(".ft-fade", {
+        y: 30,
+        opacity: 0,
+        duration: 0.9,
+        stagger: 0.08,
+        ease: "power3.out",
+        scrollTrigger: { trigger: rootRef.current, start: "top 85%", once: true },
       });
     }, rootRef);
     return () => ctx.revert();
@@ -72,70 +80,118 @@ export function Footer() {
     document.getElementById("home")?.focus({ preventScroll: true });
   };
 
+  const jump = (id: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    scrollTo(id === "home" ? 0 : `#${id}`, { offset: id === "home" ? 0 : -20 });
+  };
+
+  const linkCls =
+    "group inline-flex items-center gap-2.5 text-paper/75 transition-colors duration-300 hover:text-lime";
+  const underline =
+    "bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 group-hover:bg-[length:100%_1px]";
+
   return (
-    <footer ref={rootRef} className="relative overflow-hidden border-t border-paper/10 bg-ink pt-20">
-      <div className="container-x">
-        <div className="grid gap-12 md:grid-cols-12">
-          <div className="md:col-span-6">
-            <p className="max-w-md font-display text-xl font-light leading-snug tracking-tight sm:text-2xl">
-              Thanks for scrolling this far. <span className="font-serif italic text-lime">Good software is kind</span>{" "}
-              — let’s make something that people enjoy using.
+    <footer ref={rootRef} className="relative overflow-hidden border-t border-paper/10 bg-ink pt-16 sm:pt-24">
+      {/* soft lime light rising from the bottom */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-[-30%] left-1/2 h-[30rem] w-[60rem] max-w-[120%] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(198,255,61,0.14),transparent)] blur-2xl"
+      />
+      <div className="container-x relative">
+        {/* CTA + back to top */}
+        <div className="ft-fade flex flex-col gap-10 border-b border-paper/10 pb-14 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="eyebrow inline-flex items-center gap-2 text-lime">
+              <span className="h-1.5 w-1.5 rounded-full bg-lime shadow-[0_0_8px_#c6ff3d]" aria-hidden="true" />
+              Available for new projects
             </p>
+            <h2 className="mt-5 max-w-[16ch] font-display text-[clamp(2rem,4.6vw,4rem)] font-light leading-[1.02] tracking-[-0.04em] text-white">
+              Got an idea? <span className="font-serif italic text-lime">Let’s talk.</span>
+            </h2>
+            <a
+              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(siteConfig.email)}&su=${encodeURIComponent("Project enquiry")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group mt-7 inline-flex items-center gap-3 rounded-full border border-lime/30 bg-lime/[0.06] py-2 pl-5 pr-2 text-paper transition-colors duration-300 hover:border-lime hover:bg-lime hover:text-ink"
+            >
+              {siteConfig.email}
+              <span className="grid h-9 w-9 place-items-center rounded-full bg-lime text-ink transition-transform duration-300 group-hover:rotate-45 group-hover:bg-ink group-hover:text-lime">
+                <ArrowUpRight size={16} aria-hidden="true" />
+              </span>
+            </a>
           </div>
-          <div className="md:col-span-3">
+
+          <Magnetic strength={0.5}>
+            <button
+              type="button"
+              onClick={backToTop}
+              className="group relative grid h-28 w-28 shrink-0 place-items-center rounded-full border border-paper/15 text-center text-xs uppercase transition-colors duration-500 hover:border-lime hover:bg-lime hover:text-ink"
+              aria-label="Back to top"
+            >
+              <svg className="pointer-events-none absolute inset-0 -rotate-90" viewBox="0 0 112 112" aria-hidden="true">
+                <circle ref={ringRef} cx="56" cy="56" r="54" fill="none" stroke="#c6ff3d" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+              <span className="flex flex-col items-center gap-2">
+                <span className="overflow-hidden">
+                  <span ref={arrowRef} className="block">
+                    <ArrowUp size={22} aria-hidden="true" />
+                  </span>
+                </span>
+                <span className="text-[10px] leading-tight tracking-[0.18em]">
+                  Back
+                  <br />
+                  to top
+                </span>
+              </span>
+            </button>
+          </Magnetic>
+        </div>
+
+        {/* link columns */}
+        <div className="ft-fade grid grid-cols-2 gap-10 py-12 sm:grid-cols-3">
+          <div>
+            <p className="eyebrow text-mute">Navigate</p>
+            <ul className="mt-5 space-y-3">
+              {navItems.map((item) => (
+                <li key={item.id}>
+                  <a href={`#${item.id}`} onClick={jump(item.id)} className={linkCls}>
+                    <span className={underline}>{item.label}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
             <p className="eyebrow text-mute">Elsewhere</p>
-            <ul className="mt-4 space-y-2">
+            <ul className="mt-5 space-y-3">
               {socialLinks.map((s) => (
                 <li key={s.label}>
                   <a
                     href={s.href}
                     target={s.label === "Email" ? undefined : "_blank"}
                     rel={s.label === "Email" ? undefined : "noopener noreferrer"}
-                    className="group inline-flex items-center gap-2.5 text-paper/80 transition-colors hover:text-lime"
+                    className={linkCls}
                   >
                     <SocialIcon label={s.label} size={16} />
-                    <span className="bg-[linear-gradient(currentColor,currentColor)] bg-[length:0%_1px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 group-hover:bg-[length:100%_1px]">
-                      {s.label}
-                    </span>
+                    <span className={underline}>{s.label}</span>
                   </a>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="flex md:col-span-3 md:justify-end">
-            <Magnetic strength={0.5}>
-              <button
-                type="button"
-                onClick={backToTop}
-                className="group relative grid h-28 w-28 place-items-center rounded-full border border-paper/15 text-center text-xs uppercase transition-colors duration-500 hover:border-lime hover:bg-lime hover:text-ink"
-                aria-label="Back to top"
-              >
-                <svg className="pointer-events-none absolute inset-0 -rotate-90" viewBox="0 0 112 112" aria-hidden="true">
-                  <circle ref={ringRef} cx="56" cy="56" r="54" fill="none" stroke="#c6ff3d" strokeWidth="1.5" strokeLinecap="round" />
-                </svg>
-                <span className="flex flex-col items-center gap-2">
-                  <span className="overflow-hidden">
-                    <span ref={arrowRef} className="block">
-                      <ArrowUp size={22} aria-hidden="true" />
-                    </span>
-                  </span>
-                  <span className="text-[10px] leading-tight tracking-[0.18em]">
-                    Back
-                    <br />
-                    to top
-                  </span>
-                </span>
-              </button>
-            </Magnetic>
+          <div className="col-span-2 sm:col-span-1">
+            <p className="eyebrow text-mute">Based in</p>
+            <p className="mt-5 text-paper/75">{siteConfig.location}</p>
+            <p className="mt-1 text-paper/50">Open to remote work worldwide</p>
           </div>
         </div>
 
         <p
-          className="ft-name mt-20 overflow-hidden whitespace-nowrap text-center font-display text-[clamp(3rem,13vw,11rem)] font-normal leading-[0.85] tracking-[-0.05em] text-paper"
+          className="ft-name overflow-hidden whitespace-nowrap bg-gradient-to-b from-paper to-paper/10 bg-clip-text text-center font-display text-[clamp(3rem,15vw,14rem)] font-medium leading-[0.85] tracking-[-0.06em] text-transparent"
           aria-hidden="true"
         >
           {siteConfig.name.split("").map((l, i) => (
-            <span key={i} className="ft-letter inline-block">
+            <span key={i} className="ft-letter inline-block bg-gradient-to-b from-paper to-paper/10 bg-clip-text">
               {l === " " ? " " : l}
             </span>
           ))}

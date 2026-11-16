@@ -21,7 +21,7 @@ export const siteConfig = {
   location: "Islamabad, Pakistan",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   description:
-    "Fizza Bibi is a Full Stack Developer in Islamabad, Pakistan, building responsive, scalable and engaging web applications with React, Next.js, TypeScript, WordPress, PHP and Laravel.",
+    "Fizza Bibi is a Full Stack Developer in Islamabad, Pakistan, building responsive, scalable and engaging web applications with React, Next.js, TypeScript, WordPress and PHP.",
   resume: "/fizza-bibi-resume.pdf",
   email: "bfiza278@gmail.com",
   address: "G-12, Islamabad",
@@ -50,7 +50,7 @@ export const hero = {
 };
 
 export const about = {
-  text: "I’m a results-driven Full Stack Developer experienced in designing, developing, customizing, and maintaining responsive and scalable web applications. I specialize in React.js, Next.js, TypeScript, WordPress, PHP, Laravel, MySQL, WooCommerce, REST APIs, and modern UI development. I enjoy turning complex requirements into user-friendly and high-performing digital experiences.",
+  text: "I’m a results-driven Full Stack Developer experienced in designing, developing, customizing, and maintaining responsive and scalable web applications. I specialize in React.js, Next.js, TypeScript, WordPress, PHP, MySQL, WooCommerce, REST APIs, and modern UI development. I enjoy turning complex requirements into user-friendly and high-performing digital experiences.",
   portrait: "/fizza-portrait.jpg",
   portraitAlt: "Fizza Bibi, Full Stack Developer",
 };
@@ -75,7 +75,7 @@ export const experiences: Experience[] = [
       "Create custom WordPress functionality using PHP, AJAX, REST APIs, Custom Post Types, Custom Taxonomies, and ACF",
       "Customize WooCommerce features, pricing, carts, checkout flows, and payment integrations",
       "Integrate third-party APIs",
-      "Develop backend functionality using PHP, Laravel, and MySQL",
+      "Develop backend functionality using PHP and MySQL",
       "Build responsive and interactive interfaces",
       "Handle deployment through Git, GitHub, Vercel, Docker, and Linux servers",
       "Perform debugging, testing, optimization, and maintenance",
@@ -162,7 +162,7 @@ export const skillGroups: SkillGroup[] = [
   {
     title: "Backend",
     blurb: "Reliable APIs and data layers behind the scenes.",
-    skills: ["PHP", "Laravel", "MySQL", "REST APIs", "AJAX"],
+    skills: ["PHP", "MySQL", "REST APIs", "AJAX"],
   },
   {
     title: "WordPress & E-commerce",

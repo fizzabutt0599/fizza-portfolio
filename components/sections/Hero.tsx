@@ -83,7 +83,6 @@ function TunnelLines({ side }: { side: "left" | "right" }) {
             style={{
               animationDelay: `${delay + (flip ? 0.7 : 0)}s`,
               animationDuration: `${dur}s`,
-              filter: "drop-shadow(0 0 6px #c6ff3d) drop-shadow(0 0 2px #e9ffb0)",
             }}
           />
         ))}
@@ -160,6 +159,17 @@ export function Hero() {
       });
     });
   }, [isReady]);
+
+  // Pause the hero's looping animations while it is off screen (keeps scrolling smooth)
+  useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const io = new IntersectionObserver(([entry]) => {
+      root.classList.toggle("hero-offscreen", !entry.isIntersecting);
+    });
+    io.observe(root);
+    return () => io.disconnect();
+  }, []);
 
   // Beams sway slightly with the pointer (desktop only)
   useEffect(() => {

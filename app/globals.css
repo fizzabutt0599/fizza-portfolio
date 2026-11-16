@@ -129,8 +129,8 @@ html.lenis body {
   position: fixed;
   inset: 0;
   z-index: 60;
-  opacity: 0.07;
-  mix-blend-mode: overlay;
+  opacity: 0.035;
+  transform: translateZ(0);
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
@@ -244,7 +244,7 @@ html.lenis body {
   stroke-dashoffset: 12;
   opacity: 0;
 }
-.hero-live .hero-pulse {
+.hero-live:not(.hero-offscreen) .hero-pulse {
   animation: hero-pulse 2.6s cubic-bezier(0.45, 0, 0.25, 1) infinite;
 }
 
@@ -267,6 +267,13 @@ html.lenis body {
 }
 .hero-sway-r {
   animation: hero-sway 12s ease-in-out infinite reverse;
+}
+/* Stop hero idle animations once the hero is scrolled out of view */
+.hero-offscreen .hero-sway,
+.hero-offscreen .hero-sway-l,
+.hero-offscreen .hero-sway-r,
+.hero-offscreen .hero-pixel {
+  animation-play-state: paused;
 }
 
 @keyframes scrollhint {

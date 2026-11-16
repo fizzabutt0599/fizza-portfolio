@@ -14,14 +14,13 @@ const TECH = new Set([
   "TypeScript",
   "WordPress",
   "PHP",
-  "Laravel",
   "MySQL",
   "WooCommerce",
   "REST",
   "APIs",
 ]);
 
-const STACK = ["React.js", "Next.js", "TypeScript", "Laravel", "PHP", "WordPress", "WooCommerce", "MySQL"];
+const STACK = ["React.js", "Next.js", "TypeScript", "PHP", "WordPress", "WooCommerce", "MySQL"];
 
 const STAT_ICONS: LucideIcon[] = [Layers, Code2, Briefcase, MapPin];
 
@@ -107,7 +106,7 @@ export function About() {
             <div aria-hidden="true" className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-lime/10 blur-3xl" />
             <span
               aria-hidden="true"
-              className="pointer-events-none absolute -bottom-10 right-4 select-none font-display text-[11rem] font-semibold leading-none tracking-[-0.06em] text-paper/[0.03]"
+              className="pointer-events-none absolute bottom-0 right-6 select-none font-display text-[11rem] font-semibold leading-none tracking-[-0.06em] text-paper/[0.03]"
             >
               FB
             </span>
