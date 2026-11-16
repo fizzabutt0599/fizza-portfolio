@@ -14,16 +14,14 @@ export function Navbar() {
   const headerRef = useRef<HTMLElement>(null);
   const [active, setActive] = useState("home");
   const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   // On large screens the hero has its own top bar + pill nav, so the fixed bar waits until you leave it
   const [inHero, setInHero] = useState(true);
   useEffect(() => {
     const home = document.getElementById("home");
     if (!home) return;
-    const io = new IntersectionObserver(([e]) => setInHero(e.intersectionRatio > 0.35), {
-      threshold: [0, 0.35, 0.6, 1],
-    });
+    // Fixed header appears only once the hero (with its own nav) has fully left the screen
+    const io = new IntersectionObserver(([e]) => setInHero(e.isIntersecting), { threshold: 0 });
     io.observe(home);
     return () => io.disconnect();
   }, []);
@@ -86,17 +84,15 @@ export function Navbar() {
 
   // Compact on scroll + hide when scrolling down
   useEffect(() => {
-    let lastY = window.scrollY;
+    // Smooth scroll moves only a few px per frame, so compare against an anchor point
+    // and flip only after a clear run in one direction (avoids hide/show flicker)
+    // Header stays visible in both scroll directions; it only turns compact after 40px
     let ticking = false;
     const onScroll = () => {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
-        const y = window.scrollY;
-        setScrolled(y > 40);
-        setHidden(y > 400 && y > lastY + 4);
-        if (y < lastY - 4) setHidden(false);
-        lastY = y;
+        setScrolled(window.scrollY > 40);
         ticking = false;
       });
     };
@@ -122,9 +118,7 @@ export function Navbar() {
     <>
       <header
         ref={headerRef}
-        className={`invisible fixed inset-x-0 top-0 z-50 transition-[transform,opacity] duration-500 ease-[var(--ease-expo)] ${
-          hidden && !menuOpen ? "-translate-y-full" : "translate-y-0"
-        } ${inHero && !menuOpen ? "lg:pointer-events-none lg:-translate-y-[120%] lg:opacity-0" : "lg:opacity-100"
+        className={`invisible fixed inset-x-0 top-0 z-50 transition-[transform,opacity] duration-500 ease-[var(--ease-expo)] translate-y-0 ${inHero && !menuOpen ? "lg:pointer-events-none lg:-translate-y-[120%] lg:opacity-0" : "lg:opacity-100"
         }`}
       >
         <div

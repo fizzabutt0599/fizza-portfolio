@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { useRef } from "react";
@@ -115,12 +115,12 @@ export function Projects() {
 
   return (
     <section id="projects" ref={rootRef} aria-labelledby="projects-heading" className="relative bg-ink">
-      <div className="projects-pin relative overflow-x-clip py-10 sm:py-14 lg:flex lg:items-start lg:py-14">
+      <div className="projects-pin relative overflow-x-clip py-10 sm:py-14 lg:flex lg:h-svh lg:items-center lg:pb-8 lg:pt-28">
         <div
           ref={trackRef}
           className="container-x flex flex-col gap-8 lg:w-max lg:max-w-none lg:flex-row lg:items-stretch lg:gap-8 lg:pr-[12vw]"
         >
-          <div className="flex shrink-0 flex-col justify-between gap-10 lg:h-[min(80vh,720px)] lg:w-[30vw] lg:py-4">
+          <div className="flex shrink-0 flex-col justify-between gap-10 lg:h-[min(calc(100svh-10rem),720px)] lg:w-[30vw] lg:py-4">
             <SectionHeading
               id="projects-heading"
               index="03"
@@ -142,7 +142,7 @@ export function Projects() {
                         {p.shortTitle}
                       </span>
                       <span className="eyebrow mt-1 block text-mute">
-                        {p.category} · {p.year}
+                        {p.category} Â· {p.year}
                       </span>
                     </span>
                     <ArrowUpRight
@@ -170,7 +170,7 @@ export function Projects() {
           </div>
 
           {projects.map((p, i) => (
-            <div key={p.slug} className="project-slide shrink-0 lg:h-[min(80vh,720px)] lg:w-[min(44vw,680px)]">
+            <div key={p.slug} className="project-slide shrink-0 lg:h-[min(calc(100svh-10rem),720px)] lg:w-[min(44vw,680px)]">
               <ProjectCard project={p} priority={i === 0} />
             </div>
           ))}
