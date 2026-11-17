@@ -66,7 +66,7 @@ export function Skills() {
   }, []);
 
   return (
-    <section id="skills" ref={rootRef} aria-labelledby="skills-heading" className="relative overflow-hidden bg-ink py-10 sm:py-14">
+    <section id="skills" ref={rootRef} aria-labelledby="skills-heading" className="relative overflow-hidden bg-ink py-6 sm:py-14">
       <div className="container-x">
         <SectionHeading
           id="skills-heading"

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { useRef } from "react";
@@ -115,7 +115,7 @@ export function Projects() {
 
   return (
     <section id="projects" ref={rootRef} aria-labelledby="projects-heading" className="relative bg-ink">
-      <div className="projects-pin relative overflow-x-clip py-10 sm:py-14 lg:flex lg:h-svh lg:items-center lg:pb-8 lg:pt-28">
+      <div className="projects-pin relative overflow-x-clip py-6 sm:py-14 lg:flex lg:h-svh lg:items-center lg:pb-8 lg:pt-28">
         <div
           ref={trackRef}
           className="container-x flex flex-col gap-8 lg:w-max lg:max-w-none lg:flex-row lg:items-stretch lg:gap-8 lg:pr-[12vw]"

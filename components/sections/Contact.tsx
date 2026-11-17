@@ -52,7 +52,7 @@ export function Contact() {
   ];
 
   return (
-    <section id="contact" ref={rootRef} aria-labelledby="contact-heading" className="relative overflow-hidden bg-ink py-10 sm:py-14">
+    <section id="contact" ref={rootRef} aria-labelledby="contact-heading" className="relative overflow-hidden bg-ink py-6 sm:py-14">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-0 h-[40rem] w-[60rem] max-w-full -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(198,255,61,0.12),transparent_60%)] blur-2xl"

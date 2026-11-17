@@ -90,7 +90,7 @@ export function About() {
   }, []);
 
   return (
-    <section id="about" ref={rootRef} aria-labelledby="about-heading" className="relative bg-ink py-10 sm:py-14">
+    <section id="about" ref={rootRef} aria-labelledby="about-heading" className="relative bg-ink py-6 sm:py-14">
       <div className="container-x">
         <SectionHeading
           id="about-heading"

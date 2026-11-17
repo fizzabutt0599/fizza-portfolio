@@ -73,7 +73,7 @@ export function Experience() {
   }, []);
 
   return (
-    <section id="experience" ref={rootRef} aria-labelledby="experience-heading" className="relative bg-ink py-10 sm:py-14">
+    <section id="experience" ref={rootRef} aria-labelledby="experience-heading" className="relative bg-ink py-6 sm:py-14 lg:pb-0">
       <div className="container-x">
         <SectionHeading
           id="experience-heading"

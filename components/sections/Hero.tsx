@@ -200,9 +200,9 @@ export function Hero() {
     >
       {/* light shafts from above */}
       <div aria-hidden="true" className="hero-beams pointer-events-none absolute inset-x-0 top-0 -z-10 h-[75%]">
-        <div className="hero-beam hero-sway absolute left-[calc(50%-5rem)] top-[-10%] h-full w-[10rem] origin-top bg-gradient-to-b from-lime/15 via-lime/[0.03] to-transparent blur-2xl" />
-        <div className="hero-beam hero-sway-l absolute will-change-transform left-[22%] top-[-10%] h-[80%] w-[16rem] origin-top bg-gradient-to-b from-[#3f8f1a]/15 via-[#2b5e12]/[0.03] to-transparent blur-3xl" />
-        <div className="hero-beam hero-sway-r absolute will-change-transform right-[20%] top-[-10%] h-[80%] w-[16rem] origin-top bg-gradient-to-b from-[#3f8f1a]/15 via-[#2b5e12]/[0.03] to-transparent blur-3xl" />
+        <div className="hero-beam hero-sway max-sm:hidden absolute left-[calc(50%-5rem)] top-[-10%] h-full w-[10rem] origin-top bg-gradient-to-b from-lime/15 via-lime/[0.03] to-transparent blur-2xl" />
+        <div className="hero-beam hero-sway-l max-sm:hidden absolute will-change-transform left-[22%] top-[-10%] h-[80%] w-[16rem] origin-top bg-gradient-to-b from-[#3f8f1a]/15 via-[#2b5e12]/[0.03] to-transparent blur-3xl" />
+        <div className="hero-beam hero-sway-r max-sm:hidden absolute will-change-transform right-[20%] top-[-10%] h-[80%] w-[16rem] origin-top bg-gradient-to-b from-[#3f8f1a]/15 via-[#2b5e12]/[0.03] to-transparent blur-3xl" />
       </div>
       {/* floating dust */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
@@ -217,7 +217,7 @@ export function Hero() {
           <TunnelLines side="left" />
           <TunnelLines side="right" />
         </div>
-        <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 h-40 w-[30rem] max-w-full -translate-x-1/2 -translate-y-1/2 rounded-full bg-lime/[0.07] blur-3xl" />
+        <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 h-40 w-[30rem] max-w-full -translate-x-1/2 -translate-y-1/2 rounded-full bg-lime/[0.07] blur-3xl max-sm:hidden" />
 
         <div className="hero-inner relative z-10 flex min-h-[calc(100svh-6rem)] flex-col px-5 py-6 sm:px-8 lg:min-h-[calc(100svh-1.5rem)]">
           {/* top bar inside the frame (desktop; mobile uses the fixed navbar) */}

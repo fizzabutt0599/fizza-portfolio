@@ -65,6 +65,7 @@ export function Preloader() {
       }
     };
     const ctx = gsap.context(() => {
+      const isPhone = window.matchMedia("(max-width: 639px)").matches;
       const tl = gsap.timeline();
       tl.from(".pl-letter", { yPercent: 120, duration: 1, stagger: 0.06, ease: "expo.out" })
         .from(".pl-meta", { opacity: 0, y: 12, duration: 0.6, stagger: 0.05 }, 0.2)
@@ -84,7 +85,14 @@ export function Preloader() {
 
       tl.to(".pl-count", { color: "#c6ff3d", duration: 0.3 }, at - 0.1)
         .to(".pl-glow", { opacity: 1, scale: 1.15, duration: 0.5, ease: "power2.out" }, at - 0.2)
-        .to(".pl-letter, .pl-count", { yPercent: -120, duration: 0.7, stagger: 0.03, ease: "expo.in" }, at + 0.25)
+        // Phones: fade out in place; larger screens: letters slide up and away
+        .to(
+          ".pl-letter, .pl-count",
+          isPhone
+            ? { opacity: 0, duration: 0.45, ease: "power2.out" }
+            : { yPercent: -120, duration: 0.7, stagger: 0.03, ease: "expo.in" },
+          at + 0.25,
+        )
         .to(".pl-meta", { opacity: 0, duration: 0.3 }, "<")
         .to(root, { clipPath: "inset(0 0 100% 0)", duration: 1, ease: "expo.inOut" }, "-=0.2")
         .add(finish, "-=0.55");
@@ -117,10 +125,10 @@ export function Preloader() {
         <span>Islamabad, PK</span>
       </div>
 
-      <div className="relative flex flex-col gap-6">
+      <div className="relative my-auto flex flex-col gap-6 sm:my-0">
         <div className="flex items-end justify-between gap-6">
           <p
-            className="overflow-hidden font-display text-[clamp(3.5rem,13vw,11rem)] font-bold leading-[0.85] tracking-[-0.05em]"
+            className="overflow-hidden font-display text-[clamp(2.75rem,13vw,11rem)] whitespace-nowrap font-bold leading-[0.85] tracking-[-0.05em]"
             aria-hidden="true"
           >
             {"Fizza".split("").map((l, i) => (
@@ -131,7 +139,7 @@ export function Preloader() {
             <span className="pl-letter inline-block font-serif font-normal italic text-lime">.</span>
           </p>
           <p className="shrink-0 [clip-path:inset(0_-20%_0_-20%)]" aria-hidden="true">
-            <span className="pl-count inline-flex items-start pr-[0.06em] font-display text-[clamp(4.5rem,17vw,15rem)] font-light leading-[0.85] tracking-[-0.06em] tabular-nums text-paper">
+            <span className="pl-count inline-flex items-start pr-[0.06em] font-display text-[clamp(3.25rem,17vw,15rem)] font-light leading-[0.85] tracking-[-0.06em] tabular-nums text-paper">
               <span ref={countRef}>0</span>
               <span className="ml-[0.06em] mt-[0.12em] text-[0.3em] tracking-normal text-lime">%</span>
             </span>

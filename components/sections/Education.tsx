@@ -43,7 +43,7 @@ export function Education() {
       id="education"
       ref={rootRef}
       aria-labelledby="education-heading"
-      className="relative overflow-hidden bg-ink py-10 sm:py-14"
+      className="relative overflow-hidden bg-ink py-6 sm:py-14"
     >
       <div
         aria-hidden="true"
