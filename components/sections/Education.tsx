@@ -105,24 +105,26 @@ export function Education() {
             return (
               <article
                 key={t.title}
-                className="edu-card group relative flex flex-col gap-6 overflow-hidden rounded-[28px] border border-paper/[0.08] bg-ink-2 p-6 transition-colors duration-500 hover:border-lime/40 sm:p-8 lg:col-span-5"
+                className="edu-card group relative flex flex-col gap-6 isolate overflow-hidden rounded-[28px] border border-paper/[0.08] bg-ink-2 p-6 transition-[border-color,box-shadow,translate] duration-300 hover:-translate-y-1 hover:border-lime hover:shadow-[0_18px_40px_-14px_rgba(198,255,61,0.6)] sm:p-8 lg:col-span-5"
               >
+                {/* lime fill that fades in on hover */}
+                <span aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-lime opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <div className="flex items-start justify-between gap-4">
-                  <span className="grid h-11 w-11 place-items-center rounded-2xl bg-ink-3 text-lime transition-transform duration-500 group-hover:-rotate-12">
+                  <span className="grid h-11 w-11 place-items-center rounded-2xl bg-ink-3 text-lime transition-[transform,background-color] duration-500 group-hover:-rotate-12 group-hover:bg-ink">
                     <Icon size={20} aria-hidden="true" />
                   </span>
-                  <span className="font-mono text-[11px] tracking-[0.25em] text-paper/40">
+                  <span className="font-mono text-[11px] tracking-[0.25em] text-paper/40 transition-colors duration-300 group-hover:text-ink/60">
                     [ {String(i + 2).padStart(2, "0")} ]
                   </span>
                 </div>
                 <div>
-                  <span className="text-xs font-medium uppercase tracking-[0.18em] text-lime">{t.kind}</span>
-                  <h3 className="mt-2 font-display text-xl font-normal leading-snug tracking-tight text-white transition-colors duration-300 group-hover:text-lime sm:text-2xl">
+                  <span className="text-xs font-medium uppercase tracking-[0.18em] text-lime transition-colors duration-300 group-hover:text-ink">{t.kind}</span>
+                  <h3 className="mt-2 font-display text-xl font-normal leading-snug tracking-tight text-white transition-colors duration-300 group-hover:text-ink sm:text-2xl">
                     {t.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-paper/65">{t.org}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-paper/65 transition-colors duration-300 group-hover:text-ink/75">{t.org}</p>
                 </div>
-                <p className="mt-auto inline-flex items-center gap-2 self-start rounded-full border border-paper/10 px-3 py-1.5 text-xs text-paper/70">
+                <p className="mt-auto inline-flex items-center gap-2 self-start rounded-full border border-paper/10 px-3 py-1.5 text-xs text-paper/70 transition-colors duration-300 group-hover:border-ink group-hover:bg-ink group-hover:text-paper">
                   <CalendarDays size={13} aria-hidden="true" className="text-lime" />
                   {t.period}
                 </p>

@@ -117,7 +117,7 @@ export function About() {
               <div>
                 <p className="font-display text-xl font-semibold tracking-[-0.02em] text-paper">Hi, I&rsquo;m {siteConfig.name}</p>
                 <p className="mt-0.5 flex items-center gap-1.5 text-sm text-mute">
-                  <MapPin size={13} aria-hidden="true" className="text-lime" />
+                  <MapPin size={13} aria-hidden="true" className="text-lime transition-colors duration-300 group-hover:text-ink" />
                   {siteConfig.location}
                 </p>
               </div>
@@ -145,10 +145,12 @@ export function About() {
           {/* Right column */}
           <div className="flex flex-col gap-4 lg:col-span-5">
             {current && (
-              <div className="ab-tile relative overflow-hidden rounded-[28px] border border-lime/25 bg-gradient-to-br from-lime/[0.14] via-ink-2 to-ink-2 p-6 sm:p-7">
+              <div className="ab-tile group relative isolate overflow-hidden rounded-[28px] border border-lime/25 bg-gradient-to-br from-lime/[0.14] via-ink-2 to-ink-2 p-6 transition-[border-color,box-shadow,translate] duration-300 hover:-translate-y-1 hover:border-lime hover:shadow-[0_18px_40px_-14px_rgba(198,255,61,0.6)] sm:p-7">
+                {/* lime fill that fades in on hover */}
+                <span aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 bg-lime opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <div className="flex items-center justify-between gap-3">
-                  <p className="eyebrow text-lime">Currently</p>
-                  <span className="inline-flex items-center gap-2 rounded-full border border-paper/15 bg-ink/60 px-3 py-1 text-xs text-paper/80">
+                  <p className="eyebrow text-lime transition-colors duration-300 group-hover:text-ink">Currently</p>
+                  <span className="inline-flex items-center gap-2 rounded-full border border-paper/15 bg-ink/60 px-3 py-1 text-xs text-paper/80 transition-colors duration-300 group-hover:border-ink/20 group-hover:bg-ink group-hover:text-paper">
                     <span className="relative flex h-2 w-2" aria-hidden="true">
                       <span className="pulse-ring absolute inline-flex h-full w-full rounded-full bg-lime" />
                       <span className="relative inline-flex h-2 w-2 rounded-full bg-lime" />
@@ -156,16 +158,16 @@ export function About() {
                     Open to work
                   </span>
                 </div>
-                <p className="mt-5 font-display text-2xl font-semibold tracking-[-0.02em] text-paper">{current.role}</p>
-                <p className="mt-1 flex items-center gap-2 text-sm text-paper/70">
-                  <Briefcase size={14} aria-hidden="true" className="text-lime" />
+                <p className="mt-5 font-display text-2xl font-semibold tracking-[-0.02em] text-paper transition-colors duration-300 group-hover:text-ink">{current.role}</p>
+                <p className="mt-1 flex items-center gap-2 text-sm text-paper/70 transition-colors duration-300 group-hover:text-ink/75">
+                  <Briefcase size={14} aria-hidden="true" className="text-lime transition-colors duration-300 group-hover:text-ink" />
                   {current.company}
                 </p>
                 <ul className="mt-6 flex flex-wrap gap-2 text-xs">
                   {STACK.map((t) => (
                     <li
                       key={t}
-                      className="rounded-full border border-paper/10 bg-ink/50 px-3 py-1.5 text-paper/80 transition-colors duration-300 hover:border-lime/50 hover:text-lime"
+                      className="rounded-full border border-paper/10 bg-ink/50 px-3 py-1.5 text-paper/80 transition-colors duration-300 group-hover:border-ink/15 group-hover:bg-ink group-hover:text-paper"
                     >
                       {t}
                     </li>
@@ -177,7 +179,6 @@ export function About() {
             <dl className="ab-stats grid flex-1 grid-cols-2 gap-4">
               {stats.map((s, i) => {
                 const Icon = STAT_ICONS[i % STAT_ICONS.length];
-                const featured = i === 0;
                 return (
                   <div
                     key={s.label}
@@ -186,18 +187,12 @@ export function About() {
                       e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
                       e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
                     }}
-                    className={`ab-tile ab-stat group relative isolate overflow-hidden flex flex-col justify-between gap-5 rounded-[22px] border p-5 transition-all duration-300 hover:-translate-y-1.5 ${
-                      featured ? "border-lime bg-lime text-ink hover:shadow-[0_18px_40px_-14px_rgba(198,255,61,0.7)]" : "border-paper/[0.08] bg-ink-2 text-paper hover:border-lime/40 hover:shadow-[0_18px_40px_-18px_rgba(198,255,61,0.45)]"
-                    }`}
+                    className={`ab-tile ab-stat group relative isolate overflow-hidden flex flex-col justify-between gap-5 rounded-[22px] border p-5 transition-all duration-300 hover:-translate-y-1.5 border-lime bg-lime text-ink hover:border-lime/40 hover:bg-ink-2 hover:text-paper hover:shadow-[0_18px_40px_-18px_rgba(198,255,61,0.45)]`}
                   >
                     {/* cursor spotlight */}
                     <span
                       aria-hidden="true"
-                      className={`pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100 ${
-                        featured
-                          ? "bg-[radial-gradient(180px_circle_at_var(--mx)_var(--my),rgba(255,255,255,0.45),transparent_70%)]"
-                          : "bg-[radial-gradient(180px_circle_at_var(--mx)_var(--my),rgba(198,255,61,0.16),transparent_70%)]"
-                      }`}
+                      className={`pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(180px_circle_at_var(--mx)_var(--my),rgba(198,255,61,0.16),transparent_70%)]`}
                     />
                     {/* shine sweep */}
                     <span
@@ -205,15 +200,13 @@ export function About() {
                       className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-0 transition-[left,opacity] duration-700 ease-out group-hover:left-[120%] group-hover:opacity-100"
                     />
                     <span
-                      className={`grid h-9 w-9 place-items-center rounded-xl transition-transform duration-500 group-hover:-rotate-12 group-hover:scale-110 ${
-                        featured ? "bg-ink text-lime" : "bg-ink-3 text-lime"
-                      }`}
+                      className={`grid h-9 w-9 place-items-center rounded-xl transition-transform duration-500 group-hover:-rotate-12 group-hover:scale-110 bg-ink text-lime group-hover:bg-ink-3`}
                       aria-hidden="true"
                     >
                       <Icon size={16} />
                     </span>
                     <div className="flex flex-col-reverse">
-                      <dt className={`eyebrow mt-1.5 ${featured ? "text-ink/70" : "text-mute"}`}>{s.label}</dt>
+                      <dt className={`eyebrow mt-1.5 text-ink/70 transition-colors duration-300 group-hover:text-mute`}>{s.label}</dt>
                       <dd className="font-display text-[clamp(1.2rem,1.6vw,1.5rem)] leading-none tracking-[-0.03em]">
                         {typeof s.count === "number" ? <span data-count={s.count}>{s.count}</span> : s.value}
                       </dd>

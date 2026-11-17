@@ -118,7 +118,7 @@ export function Navbar() {
     <>
       <header
         ref={headerRef}
-        className={`invisible fixed inset-x-0 top-0 z-50 transition-[transform,opacity] duration-500 ease-[var(--ease-expo)] translate-y-0 ${inHero && !menuOpen ? "lg:pointer-events-none lg:-translate-y-[120%] lg:opacity-0" : "lg:opacity-100"
+        className={`invisible fixed inset-x-0 top-0 z-50 transition-[translate,opacity] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-[translate,opacity] translate-y-0 ${inHero && !menuOpen ? "lg:pointer-events-none lg:-translate-y-6 lg:opacity-0" : "lg:opacity-100"
         }`}
       >
         <div
