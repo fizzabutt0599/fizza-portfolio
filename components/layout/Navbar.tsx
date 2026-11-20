@@ -177,7 +177,8 @@ export function Navbar() {
               <Magnetic className="nav-item hidden sm:inline-block">
                 <a
                   href={siteConfig.resume}
-                  download
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full bg-lime px-4 py-2.5 text-sm font-medium text-ink transition-colors duration-300 hover:bg-paper"
                 >
                   <ArrowDownToLine size={16} aria-hidden="true" />

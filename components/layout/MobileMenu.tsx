@@ -119,7 +119,8 @@ export function MobileMenu({ open, onClose, active, onNavigate }: MobileMenuProp
       <div className="mt-10 space-y-6">
         <a
           href={siteConfig.resume}
-          download
+          target="_blank"
+          rel="noopener noreferrer"
           tabIndex={open ? 0 : -1}
           className="mm-meta inline-flex items-center gap-2 rounded-full bg-lime px-5 py-3 text-sm font-medium text-ink transition-colors hover:bg-paper"
         >
